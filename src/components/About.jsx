@@ -73,7 +73,7 @@ export default function About() {
                 <span className="text-accent">//</span> {profile.location}
               </p>
               <p className="flex items-center gap-3 font-mono text-sm text-zinc-500">
-                <span className="text-accent">//</span> B.Sc. Computer Science
+                <span className="text-accent">//</span> First-year B.Tech Engineering
               </p>
               <p className="flex items-center gap-3 font-mono text-sm text-zinc-500">
                 <span className="text-accent">//</span> Open to internships &amp; freelance

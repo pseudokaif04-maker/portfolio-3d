@@ -90,7 +90,7 @@ export default function Hero() {
             className="mt-12 flex items-center gap-8 font-mono text-xs text-zinc-500"
           >
             <span>
-              <span className="text-zinc-200">6+</span> projects shipped
+              <span className="text-zinc-200">4+</span> projects shipped
             </span>
             <span className="h-4 w-px bg-surface-border" />
             <span>

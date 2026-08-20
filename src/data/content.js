@@ -1,102 +1,82 @@
 export const profile = {
   name: 'MOHAMMAD KAIF',
   firstName: 'MOHAMMAD',
-  role: 'CS Student & Developer',
+  role: 'Engineering Student & Developer',
   tagline:
     "I build thoughtful, interactive web experiences — where clean engineering meets a touch of 3D magic.",
-  bio: `Hi, I'm KAIF — a computer science student with a passion for crafting fast, accessible, and genuinely delightful web applications. I love the intersection of logic and design: turning complex problems into elegant interfaces that feel effortless to use.
+  bio: `Hi, I'm KAIF — a first-year B.Tech engineering student at ZHCET, AMU Aligarh, with a growing passion for building fast, clean, and genuinely useful web applications. I love taking an idea and turning it into a working product, learning how everything fits together along the way.
 
-  Currently focused on full-stack development, real-time apps, and creative front-end work with React and Three.js. When I'm not writing code you'll find me exploring procedural generation, contributing to open source, or mentoring first-year CS students.`,
-  email: 'hello@mohammadkaif.dev',
-  location: 'Toronto, Canada',
+  I'm also quite handy with AI tools — I use them daily to write code faster, prototype ideas, and ship real projects like StudyPal and my scholarship portal. Always exploring new tech and leveling up one project at a time.`,
+  email: 'pseudokaif04@gmail.com',
+  location: 'Aligarh, India',
   socials: {
-    github: 'https://github.com/mohammadkaif',
-    linkedin: 'https://linkedin.com/in/mohammadkaif',
-    email: 'mailto:hello@mohammadkaif.dev',
+    github: 'https://github.com/pseudokaif04-maker',
+    email: 'mailto:pseudokaif04@gmail.com',
   },
 };
 
 export const skills = {
   languages: [
-    { name: 'TypeScript', level: 90 },
-    { name: 'JavaScript', level: 95 },
-    { name: 'Python', level: 80 },
-    { name: 'C++', level: 65 },
-    { name: 'Rust', level: 55 },
-    { name: 'SQL', level: 75 },
+    { name: 'JavaScript', level: 88 },
+    { name: 'HTML / CSS', level: 85 },
+    { name: 'Python', level: 75 },
+    { name: 'C++', level: 50 },
+    { name: 'SQL', level: 45 },
   ],
   frameworks: [
-    { name: 'React', level: 92 },
-    { name: 'Three.js / R3F', level: 85 },
-    { name: 'Next.js', level: 88 },
-    { name: 'Node.js', level: 82 },
-    { name: 'Tailwind CSS', level: 93 },
-    { name: 'Framer Motion', level: 78 },
+    { name: 'Tailwind CSS', level: 80 },
+    { name: 'React', level: 70 },
+    { name: 'Vite', level: 72 },
+    { name: 'Node.js', level: 60 },
+    { name: 'Framer Motion', level: 50 },
+    { name: 'Three.js / R3F', level: 40 },
   ],
   tools: [
-    { name: 'Git & GitHub', level: 90 },
-    { name: 'Docker', level: 70 },
-    { name: 'PostgreSQL', level: 72 },
-    { name: 'Figma', level: 68 },
-    { name: 'Vite', level: 88 },
-    { name: 'Linux', level: 75 },
+    { name: 'AI Tools (LLMs, Copilots)', level: 92 },
+    { name: 'Git & GitHub', level: 85 },
+    { name: 'Google Sheets API', level: 65 },
+    { name: 'Telegram Bot API', level: 65 },
+    { name: 'Figma', level: 40 },
+    { name: 'Linux', level: 45 },
   ],
 };
 
 export const projects = [
   {
-    title: 'Orbit — 3D Data Dashboard',
+    title: 'Studypal',
     description:
-      'Real-time analytics dashboard rendered in 3D. Visualizes server metrics as an interactive particle constellation with click-to-inspect nodes.',
-    tech: ['React', 'Three.js', 'R3F', 'WebSocket', 'Tailwind'],
-    github: 'https://github.com/alexmorgan/orbit',
-    demo: 'https://orbit-demo.vercel.app',
+      'AI-powered study buddy for students. Ask anything, any subject — or paste your notes to generate flashcards, quizzes, and summaries. Free and open source.',
+    tech: ['JavaScript', 'AI', 'CSS', 'HTML'],
+    github: 'https://github.com/pseudokaif04-maker/studypal',
+    demo: null,
     gradient: 'from-indigo-500 to-violet-600',
   },
   {
-    title: 'PulseNotes',
+    title: 'Scholarshine — Scholarships Portal',
     description:
-      'A collaborative markdown editor with live cursors, CRDT-based syncing, and offline-first storage via IndexedDB. Used by 2k+ students.',
-    tech: ['Next.js', 'CRDT', 'IndexedDB', 'Node.js'],
-    github: 'https://github.com/alexmorgan/pulsenotes',
-    demo: 'https://pulsenotes.app',
+      'A free guide to government and private scholarships for students in India — with eligibility details, application instructions, deadlines, and an eligibility checker. Data loads live from a Google Sheet.',
+    tech: ['JavaScript', 'Google Sheets API', 'CSS', 'HTML'],
+    github: 'https://github.com/pseudokaif04-maker/Scholarships-portal',
+    demo: 'https://pseudokaif04-maker.github.io/Scholarships-portal/',
     gradient: 'from-cyan-500 to-sky-600',
   },
   {
-    title: 'Voxel Builder',
+    title: 'Deadline Bot',
     description:
-      'Browser-based voxel editor with procedural terrain generation, instanced meshes, and one-click GLTF export. Runs smoothly on mobile.',
-    tech: ['Three.js', 'WebGL', 'GLTF', 'Rust (WASM)'],
-    github: 'https://github.com/alexmorgan/voxel-builder',
+      'A Telegram bot that sends deadline reminders, so you never miss an application, assignment, or submission date.',
+    tech: ['Python', 'Telegram Bot API'],
+    github: 'https://github.com/pseudokaif04-maker/deadline-bot',
     demo: null,
     gradient: 'from-emerald-500 to-teal-600',
   },
   {
-    title: 'Echo — Music Visualization',
+    title: 'B.Tech Career Guide',
     description:
-      'Audio-reactive music visualizer that maps frequency bands to a generative 3D particle field. Toggle between 6 shader presets.',
-    tech: ['Web Audio API', 'Three.js', 'GLSL', 'Vite'],
-    github: 'https://github.com/alexmorgan/echo',
-    demo: 'https://echo-vis.vercel.app',
+      'Interactive single-page guide for B.Tech students — pick an engineering branch and see career paths, jobs, salaries, and skills to master with YouTube learning playlists.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/pseudokaif04-maker/Btech-career-guide',
+    demo: 'https://pseudokaif04-maker.github.io/Btech-career-guide/',
     gradient: 'from-fuchsia-500 to-pink-600',
-  },
-  {
-    title: 'StudyFlow',
-    description:
-      'Pomodoro + spaced-repetition planner with a distraction-free focus mode, streak tracking, and smart scheduling recommendations.',
-    tech: ['React', 'TypeScript', 'Local-first', 'Chart.js'],
-    github: 'https://github.com/alexmorgan/studyflow',
-    demo: 'https://studyflow.app',
-    gradient: 'from-amber-500 to-orange-600',
-  },
-  {
-    title: 'Raytracer in Rust',
-    description:
-      'A from-scratch CPU raytracer supporting soft shadows, reflections, and depth-of-field. Renders scenes to PNG in under 2 seconds.',
-    tech: ['Rust', 'Linear Algebra', 'PPM'],
-    github: 'https://github.com/alexmorgan/raytracer',
-    demo: null,
-    gradient: 'from-slate-500 to-zinc-600',
   },
 ];
 
@@ -104,34 +84,26 @@ export const timeline = [
   {
     type: 'education',
     period: '2023 — Present',
-    title: 'B.Sc. Computer Science',
-    org: 'University of Toronto',
+    title: 'B.Tech, Engineering',
+    org: 'Zakir Husain College of Engineering and Technology (ZHCET), AMU Aligarh',
     description:
-      'Focusing on graphics, distributed systems, and HCI. Dean’s List (2 terms). Teaching assistant for Intro to Programming.',
-  },
-  {
-    type: 'work',
-    period: 'Summer 2025',
-    title: 'Software Engineer Intern',
-    org: 'Pixelforge Labs',
-    description:
-      'Shipped a WebGL-based 3D configurator used by 40k monthly visitors. Cut render time 3x via instancing and draw-call batching.',
+      'Currently in my first year of B.Tech — building a strong foundation in engineering and programming while exploring full-stack development and AI.',
   },
   {
     type: 'education',
-    period: '2021 — 2023',
-    title: 'High School Diploma',
-    org: 'Northview Collegiate',
+    period: '2020 — 2023',
+    title: 'Intermediate (Class 11–12)',
+    org: 'Saiyyid Hamid Senior Secondary School (Boys), AMU Aligarh',
     description:
-      'Graduated with honours. Built the school’s first robotics club and led it to a provincial final.',
+      'Completed my senior secondary education in 2023, building the foundations in science and mathematics that led me into engineering.',
   },
   {
-    type: 'work',
-    period: '2024 — 2025',
-    title: 'Open Source Contributor',
-    org: 'React Three Fiber ecosystem',
+    type: 'education',
+    period: 'till 2020',
+    title: 'High School',
+    org: 'St. Francis Inter College, Hathras',
     description:
-      'Contributed examples, docs, and bug fixes to R3F and drei. Maintainer of two community hooks used in 300+ repos.',
+      'Finished my schooling in 2020 with a strong academic record and an early interest in computers and technology.',
   },
 ];
 
