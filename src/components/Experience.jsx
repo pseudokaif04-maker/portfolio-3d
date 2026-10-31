@@ -12,8 +12,12 @@ const lineVariants = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-28">
-      <div className="section-pad">
+    <section id="experience" className="relative overflow-hidden py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-violet-100/40 blur-[110px]" />
+      </div>
+
+      <div className="section-pad relative z-10">
         <SectionHeading
           eyebrow="// experience & education"
           title="My journey so far"
@@ -26,7 +30,7 @@ export default function Experience() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-100px' }}
-            className="absolute left-4 top-0 h-full w-px origin-top bg-gradient-to-b from-accent via-surface-border to-transparent md:left-1/2"
+            className="absolute left-4 top-0 h-full w-px origin-top bg-gradient-to-b from-accent via-accent/25 to-transparent md:left-1/2"
           />
 
           <div className="space-y-10">
@@ -46,26 +50,32 @@ export default function Experience() {
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                     className="ml-10 w-full pl-4 md:ml-0 md:w-[calc(50%-2.5rem)] md:px-0"
                   >
-                    <div className="rounded-2xl border border-surface-border bg-surface-card p-6 transition-colors hover:border-accent/50">
+                    <div className="group relative rounded-2xl border border-surface-border bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lift">
+                      <span
+                        aria-hidden
+                        className="absolute right-5 top-5 font-mono text-[10px] text-ink-muted/60"
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
                       <div className="flex flex-wrap items-center gap-3">
                         <span
                           className={`rounded-full px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${
                             entry.type === 'work'
-                              ? 'bg-accent/15 text-accent-glow'
-                              : 'bg-emerald-500/15 text-emerald-400'
+                              ? 'bg-accent/10 text-accent'
+                              : 'bg-emerald-50 text-emerald-700'
                           }`}
                         >
                           {entry.type}
                         </span>
-                        <span className="font-mono text-xs text-zinc-500">
+                        <span className="font-mono text-xs text-ink-muted">
                           {entry.period}
                         </span>
                       </div>
-                      <h3 className="mt-3 text-lg font-semibold text-white">
+                      <h3 className="mt-3 text-lg font-semibold tracking-tight text-ink">
                         {entry.title}
                       </h3>
                       <p className="font-mono text-sm text-accent">{entry.org}</p>
-                      <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                      <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                         {entry.description}
                       </p>
                     </div>
@@ -76,7 +86,7 @@ export default function Experience() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.4, delay: 0.2 }}
-                    className={`absolute top-2 left-4 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-accent bg-surface shadow-glow md:top-1/2 md:left-1/2 md:-translate-y-1/2`}
+                    className="absolute top-2 left-4 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-accent bg-white shadow-[0_0_0_4px_rgba(79,70,229,0.12)] md:top-1/2 md:left-1/2 md:-translate-y-1/2"
                   />
                 </div>
               );

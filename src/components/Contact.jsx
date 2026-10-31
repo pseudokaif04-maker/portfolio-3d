@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionHeading from './ui/SectionHeading';
 import { profile } from '../data/content';
@@ -7,20 +7,45 @@ import { usePrefersReducedMotion } from '../hooks/useMediaQuery';
 const ContactScene = lazy(() => import('./three/ContactScene'));
 
 const inputClasses =
-  'w-full rounded-xl border border-surface-border bg-surface-card/70 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition-colors focus:border-accent/70 focus:ring-2 focus:ring-accent/20';
+  'w-full rounded-xl border border-surface-border bg-white px-4 py-3 text-sm text-ink shadow-sm placeholder-zinc-400 outline-none transition-all focus:border-accent/60 focus:ring-4 focus:ring-accent/10';
 
 export default function Contact() {
   const prefersReduced = usePrefersReducedMotion();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [copied, setCopied] = useState(false);
+  const [sent, setSent] = useState(false);
+  const timers = useRef([]);
+
+  useEffect(
+    () => () => {
+      timers.current.forEach(clearTimeout);
+    },
+    [],
+  );
+
+  const flash = (setter) => {
+    setter(true);
+    timers.current.push(setTimeout(() => setter(false), 2600));
+  };
 
   const update = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      flash(setCopied);
+    } catch {
+      window.location.href = profile.socials.email;
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `${profile.socials.email}?subject=${subject}&body=${body}`;
+    flash(setSent);
   };
 
   const socials = [
@@ -46,12 +71,13 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative overflow-hidden py-28">
+    <section id="contact" className="relative overflow-hidden border-t border-surface-border py-28">
       <div aria-hidden className="pointer-events-none absolute inset-0 opacity-50">
         <Suspense fallback={null}>
           <ContactScene reduced={prefersReduced} />
         </Suspense>
       </div>
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface via-transparent to-indigo-50/60" />
 
       <div className="section-pad relative z-10">
         <SectionHeading
@@ -68,14 +94,63 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="flex flex-col justify-center"
           >
-            <h3 className="text-xl font-semibold text-white">{profile.name}</h3>
-            <p className="mt-2 font-mono text-sm text-accent">
-              {profile.email}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-50/80 px-3 py-1.5 text-[11px] font-medium text-emerald-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Available now
+            </span>
+
+            <h3 className="mt-5 text-2xl font-semibold tracking-tight text-ink">
+              {profile.name}
+            </h3>
+
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <a
+                href={profile.socials.email}
+                className="font-mono text-sm text-accent transition-colors hover:text-accent-soft"
+              >
+                {profile.email}
+              </a>
+              <button
+                type="button"
+                onClick={copyEmail}
+                aria-label="Copy email address"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-surface-border bg-white text-ink-muted shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
+              >
+                {copied ? (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="14" height="14" x="8" y="8" rx="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                  </svg>
+                )}
+              </button>
+              <span
+                aria-live="polite"
+                className={`font-mono text-[11px] text-emerald-600 transition-opacity duration-200 ${
+                  copied ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                copied!
+              </span>
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-ink-soft">
               Currently open to internships, freelance, and cool side projects.
               I usually reply within 24 hours.
             </p>
+
+            <div className="mt-6 flex items-center gap-3 font-mono text-xs text-ink-muted">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-50 text-accent">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </span>
+              {profile.location}
+            </div>
 
             <div className="mt-8 flex gap-3">
               {socials.map((s) => (
@@ -85,7 +160,7 @@ export default function Contact() {
                   target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface-card text-zinc-400 transition-all hover:-translate-y-1 hover:border-accent hover:text-accent hover:shadow-glow"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-white text-ink-muted shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:text-accent hover:shadow-glow"
                 >
                   {s.icon}
                 </a>
@@ -99,45 +174,47 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
-            className="rounded-2xl border border-surface-border bg-surface-card/70 p-6 backdrop-blur-md"
+            className="rounded-2xl border border-surface-border bg-white/85 p-6 shadow-soft backdrop-blur-md transition-shadow duration-300 focus-within:shadow-lift sm:p-7"
           >
             <div className="space-y-4">
-              <div>
-                <label htmlFor="name" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-500">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={update('name')}
-                  placeholder="Jane Doe"
-                  className={inputClasses}
-                />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink-muted">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={update('name')}
+                    placeholder="Jane Doe"
+                    className={inputClasses}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink-muted">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={update('email')}
+                    placeholder="jane@example.com"
+                    className={inputClasses}
+                  />
+                </div>
               </div>
               <div>
-                <label htmlFor="email" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-500">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={update('email')}
-                  placeholder="jane@example.com"
-                  className={inputClasses}
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <label htmlFor="message" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink-muted">
                   Message
                 </label>
                 <textarea
                   id="message"
                   required
-                  rows={4}
+                  rows={5}
                   value={form.message}
                   onChange={update('message')}
                   placeholder="Tell me about your project..."
@@ -146,11 +223,14 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition-all hover:-translate-y-0.5 hover:bg-accent-soft"
               >
-                Send message
+                {sent ? 'Opening mail app…' : 'Send message'}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  {sent ? <path d="M20 6L9 17l-5-5" /> : <path d="M5 12h14M12 5l7 7-7 7" />}
+                </svg>
               </button>
-              <p className="text-center font-mono text-xs text-zinc-600">
+              <p className="text-center font-mono text-[11px] text-ink-muted">
                 opens your email client with everything pre-filled
               </p>
             </div>

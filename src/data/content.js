@@ -43,6 +43,15 @@ export const skills = {
 
 export const projects = [
   {
+    title: 'Aftertide',
+    description:
+      'A calm, anonymous space to share how you\'re really feeling. Posts get gentle reflective replies, and support comes as quiet "ripples" instead of likes. Full-stack: React frontend, Express API, permanent storage on Neon Postgres, generated rain-and-birdsong ambience, deployed live on Render.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com/pseudokaif04-maker/aftertide',
+    demo: 'https://aftertide.onrender.com',
+    gradient: 'from-sky-500 to-blue-600',
+  },
+  {
     title: 'Studypal',
     description:
       'AI-powered study buddy for students. Ask anything, any subject — or paste your notes to generate flashcards, quizzes, and summaries. Free and open source.',
