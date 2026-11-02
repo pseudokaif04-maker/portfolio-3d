@@ -6,7 +6,7 @@ export const profile = {
     "I build thoughtful, interactive web experiences — where clean engineering meets a touch of 3D magic.",
   bio: `Hi, I'm KAIF — a first-year B.Tech engineering student at ZHCET, AMU Aligarh, with a growing passion for building fast, clean, and genuinely useful web applications. I love taking an idea and turning it into a working product, learning how everything fits together along the way.
 
-  I'm also quite handy with AI tools — I use them daily to write code faster, prototype ideas, and ship real projects like StudyPal and my scholarship portal. Always exploring new tech and leveling up one project at a time.`,
+  I'm also quite handy with AI tools — I use them daily to write code faster, prototype ideas, and ship real projects like StudyPal, my scholarship portal, and SceneScribe Studio. Always exploring new tech and leveling up one project at a time.`,
   email: 'pseudokaif04@gmail.com',
   location: 'Aligarh, India',
   socials: {
@@ -86,6 +86,15 @@ export const projects = [
     github: 'https://github.com/pseudokaif04-maker/Btech-career-guide',
     demo: 'https://pseudokaif04-maker.github.io/Btech-career-guide/',
     gradient: 'from-fuchsia-500 to-pink-600',
+  },
+  {
+    title: 'SceneScribe Studio',
+    description:
+      'A local-first video caption studio unified with ClipForge. ClipForge turns long YouTube/Twitch videos into short clips, and SceneScribe reads each clip\'s frames, audio, speech, and on-screen text to generate six platform-shaped caption directions. Everything runs locally - no accounts, no cloud AI, no footage uploads. Built with Python, Starlette, FFmpeg, faster-whisper, RapidOCR, and a custom editorial web UI.',
+    tech: ['Python', 'Starlette', 'ffmpeg', 'faster-whisper', 'RapidOCR'],
+    github: 'https://github.com/pseudokaif04-maker/scenescribe-studio',
+    demo: null,
+    gradient: 'from-violet-500 to-indigo-600',
   },
 ];
 

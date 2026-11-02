@@ -1,4 +1,16 @@
 export const projectDetails = {
+  'SceneScribe Studio': {
+    subtitle: 'Local-first video caption studio unified with ClipForge',
+    highlights: [
+      'ClipForge turns long YouTube/Twitch videos into short, replayable clips.',
+      'SceneScribe reads each clip\'s frames, audio, speech, and on-screen text.',
+      'Generates six platform-shaped caption directions for IG, TikTok, Shorts, LinkedIn, and X.',
+      'Runs entirely on your machine - no accounts, no cloud AI, no footage uploads.',
+    ],
+    takeaway:
+      'The best captions come from reading the actual edit, not guessing from a title.',
+  },
+
   Aftertide: {
     subtitle: 'Full-stack · a calmer social space',
     highlights: [
