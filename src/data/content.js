@@ -57,7 +57,7 @@ export const projects = [
       'AI-powered study buddy for students. Ask anything, any subject — or paste your notes to generate flashcards, quizzes, and summaries. Free and open source.',
     tech: ['JavaScript', 'AI', 'CSS', 'HTML'],
     github: 'https://github.com/pseudokaif04-maker/studypal',
-    demo: null,
+    demo: 'https://studypal-pn3s.onrender.com/',
     gradient: 'from-indigo-500 to-violet-600',
   },
   {
